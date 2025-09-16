@@ -1,0 +1,25 @@
+.modal {
+  background: var(--fondo);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  max-width: 350px;
+  position: relative;
+}
+
+.modal .close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--gris-oscuro);
+  background: transparent;
+  border: none;
+}
+
+.modal .close-btn:hover {
+  color: var(--verde);
+}
