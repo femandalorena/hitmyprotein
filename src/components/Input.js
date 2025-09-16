@@ -14,7 +14,7 @@ function Input({ onSubmit }) {
     if (onSubmit && typeof onSubmit === "function") {
       onSubmit(Number(val));
     }
-    setVal(""); 
+    setVal("");
   };
 
   return (
@@ -28,7 +28,7 @@ function Input({ onSubmit }) {
         pattern="[0-9]*"
         className="input-field"
       />
-      <Button onClick={handleSubmit}>Agregar</Button>
+      <Button onClick={handleSubmit} type="general">Agregar</Button>
     </div>
   );
 }

@@ -62,8 +62,9 @@ function TrackerModal({ onClose }) {
             value={input}
             onChange={e => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
+            className="input-field"
           />
-          <Button onClick={handleSend}>Enviar</Button>
+          <Button onClick={handleSend} type="general">Enviar</Button>
         </div>
       </motion.div>
     </div>

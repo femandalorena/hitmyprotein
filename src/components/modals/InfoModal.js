@@ -41,14 +41,14 @@ class InfoModal extends React.Component {
           className="modal"
         >
           <h2>Ingresa tus datos</h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" }}>
+          <div className="modal-content-column">
             <input
               type="number"
               inputMode="numeric"
               placeholder="Peso (kg)"
               value={weight}
               onChange={(e) => this.handleChange("weight", e.target.value)}
-              style={{ appearance: "none", MozAppearance: "textfield" }}
+              className="input-field"
             />
             <input
               type="number"
@@ -56,9 +56,9 @@ class InfoModal extends React.Component {
               placeholder="Altura (cm)"
               value={height}
               onChange={(e) => this.handleChange("height", e.target.value)}
-              style={{ appearance: "none", MozAppearance: "textfield" }}
+              className="input-field"
             />
-            <Button onClick={this.handleSubmit}>Guardar</Button>
+            <Button onClick={this.handleSubmit} type="general">Guardar</Button>
           </div>
         </motion.div>
       </div>

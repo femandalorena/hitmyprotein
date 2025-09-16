@@ -19,7 +19,7 @@ class GoalModal extends React.Component {
           className="modal"
         >
           <h2>Define tu meta</h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" }}>
+          <div className="modal-content-column">
             <Button onClick={() => this.handleClick(true)}>Ganar masa muscular</Button>
             <Button onClick={() => this.handleClick(false)}>Mantener masa muscular</Button>
           </div>

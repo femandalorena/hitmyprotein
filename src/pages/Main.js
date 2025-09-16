@@ -36,10 +36,10 @@ function Main() {
     if (savedTheme === null) setShowTheme(true);
     else setDarkMode(savedTheme === "true");
 
-    if (!savedGoal) setShowGoal(true);
+    if (!savedGoal) setShowGoal(false);
     else setGoalWinMuscle(savedGoal === "true");
 
-    if (!savedData) setShowInfo(true);
+    if (!savedData) setShowInfo(false);
     else setUserData(JSON.parse(savedData));
   }, []);
 
@@ -85,7 +85,7 @@ function Main() {
 
   return (
     <div className="main-container">
-      <header style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
+      <header className="main-header">
         <h1>HitMyProtein</h1>
       </header>
 
@@ -93,15 +93,11 @@ function Main() {
 
       <Input onSubmit={handleAddProtein} />
 
-      <div
-        className="tracker-button"
-        onClick={() => setShowTracker(true)}
-      >
+      <div className="tracker-button" onClick={() => setShowTracker(true)}>
         <FaRobot size={28} color="var(--verde)" />
         <span>Calcular las proteínas de tu comida</span>
       </div>
 
-      {showTracker && <TrackerModal onClose={() => setShowTracker(false)} />}
       {showTheme && <ThemeModal onSave={handleThemeSave} />}
       {showGoal && <GoalModal onSave={handleSaveGoal} />}
       {showInfo && (
@@ -111,6 +107,7 @@ function Main() {
           onSave={handleSaveInfo}
         />
       )}
+      {showTracker && <TrackerModal onClose={() => setShowTracker(false)} />}
       {showCongrats && (
         <CongratsModal
           goalWinMuscle={goalWinMuscle}

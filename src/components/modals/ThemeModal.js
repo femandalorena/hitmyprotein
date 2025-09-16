@@ -19,7 +19,7 @@ class ThemeModal extends React.Component {
           className="modal"
         >
           <h2>Selecciona el modo de la app</h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", marginTop: "1rem" }}>
+          <div className="modal-content-column">
             <Button onClick={() => this.handleClick(false)}>Diurno</Button>
             <Button onClick={() => this.handleClick(true)}>Nocturno</Button>
           </div>

@@ -25,7 +25,7 @@ body {
   font-family: "Poppins", sans-serif;
   background: var(--fondo);
   color: var(--texto);
-  overflow: hidden;
+  overflow-x: hidden;
   transition: background 0.4s, color 0.4s;
 }
 
@@ -37,7 +37,7 @@ body {
   width: 100%;
 }
 
-header {
+.main-header {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -46,12 +46,10 @@ header {
 
 h1 {
   font-size: 1.8rem;
-  text-align: center;
   margin: 0;
   color: var(--texto);
 }
 
-/* Thermometer */
 .thermometer {
   width: 90%;
   max-width: 400px;
@@ -61,9 +59,6 @@ h1 {
   overflow: hidden;
 }
 
-/* --------------------------
-   Input y Button centralizados
-   -------------------------- */
 .input-container {
   display: flex;
   gap: 0.5rem;
@@ -72,7 +67,7 @@ h1 {
   margin-bottom: 1rem;
 }
 
-.input-container input {
+.input-field {
   flex: 1;
   padding: 0.5rem 0.8rem;
   border-radius: 8px;
@@ -82,31 +77,11 @@ h1 {
   transition: border 0.2s, box-shadow 0.2s;
 }
 
-.input-container input:focus {
+.input-field:focus {
   border-color: var(--celeste);
   box-shadow: 0 0 6px rgba(107,196,210,0.3);
 }
 
-.input-container button {
-  flex: 0 0 auto; /* solo lo necesario para el texto */
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9rem;
-  background: var(--celeste);
-  color: #fff;
-  transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-}
-
-.input-container button:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-}
-
-/* Buttons generales */
 button.general {
   background: var(--boton-bg);
   color: white;
@@ -125,7 +100,6 @@ button.general:hover {
   box-shadow: 0 6px 18px rgba(0,0,0,0.2);
 }
 
-/* Robot Tracker Button */
 .tracker-button {
   display: flex;
   align-items: center;
@@ -156,7 +130,6 @@ button.general:hover {
   height: 36px;
 }
 
-/* Modal backdrop & container */
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -168,13 +141,14 @@ button.general:hover {
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 1rem;
 }
 
 .modal {
   background: var(--fondo);
   padding: 2rem;
   border-radius: 1.5rem;
-  width: 90%;
+  width: 100%;
   max-width: 360px;
   text-align: center;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
@@ -185,32 +159,30 @@ button.general:hover {
   margin-top: 0;
 }
 
-.modal input {
-  width: 100%;
+.modal-content-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
-/* Mobile first spacing */
+/* Mobile first */
 @media (min-width: 768px) {
   h1 {
     font-size: 2.2rem;
   }
 
-  .input-container input {
+  .input-field {
     font-size: 1rem;
     padding: 0.6rem 1rem;
   }
 
-  .input-container button {
-    font-size: 1rem;
-    padding: 0.6rem 1.2rem;
+  button.general {
+    font-size: 1.1rem;
   }
 
   .tracker-button {
     font-size: 1.1rem;
     gap: 1rem;
-  }
-
-  button.general {
-    font-size: 1.1rem;
   }
 }
