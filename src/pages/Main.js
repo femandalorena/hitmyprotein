@@ -86,7 +86,7 @@ function Main() {
   return (
     <div className="main-container">
       <header className="main-header">
-        <h1>HitMyProtein</h1>
+        <h1>Meta Proteica</h1>
       </header>
 
       <Thermometer current={protein} max={needs.max} />
