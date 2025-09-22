@@ -89,7 +89,8 @@ function Main() {
         <h1>Meta Proteica</h1>
       </header>
 
-      <Thermometer current={protein} max={needs.max} />
+      <Thermometer current={protein} max={needs.max} min={needs.min} />
+
 
       <Input onSubmit={handleAddProtein} />
 
