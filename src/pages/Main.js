@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { FaRobot } from "react-icons/fa";
+
 import Thermometer from "../components/Thermometer";
 import Input from "../components/Input";
 import ThemeModal from "../components/modals/ThemeModal";
@@ -6,8 +8,9 @@ import GoalModal from "../components/modals/GoalModal";
 import InfoModal from "../components/modals/InfoModal";
 import CongratsModal from "../components/modals/CongratsModal";
 import TrackerModal from "../components/modals/TrackerModal";
-import { FaRobot } from "react-icons/fa";
+
 import { calculateProteinNeeds } from "../utils/calculator";
+
 import "../styles/Main.css";
 import "../styles/Modal.css";
 
@@ -24,10 +27,10 @@ function Main() {
   const [protein, setProtein] = useState(() => {
     const saved = JSON.parse(localStorage.getItem("proteinData"));
     const today = new Date().toISOString().split("T")[0];
-    if (saved && saved.date === today) return saved.value;
-    return 0;
+    return saved?.date === today ? saved.value : 0;
   });
 
+  // Load saved settings once
   useEffect(() => {
     const savedTheme = localStorage.getItem("darkMode");
     const savedGoal = localStorage.getItem("goalWinMuscle");
@@ -36,17 +39,19 @@ function Main() {
     if (savedTheme === null) setShowTheme(true);
     else setDarkMode(savedTheme === "true");
 
-    if (!savedGoal) setShowGoal(false);
-    else setGoalWinMuscle(savedGoal === "true");
+    setGoalWinMuscle(savedGoal === "true" ? true : null);
+    setShowGoal(!savedGoal);
 
-    if (!savedData) setShowInfo(false);
-    else setUserData(JSON.parse(savedData));
+    if (savedData) setUserData(JSON.parse(savedData));
+    else setShowInfo(true);
   }, []);
 
+  // Apply dark mode
   useEffect(() => {
     document.body.className = darkMode ? "dark" : "";
   }, [darkMode]);
 
+  // Calculate protein needs when user data or goal changes
   useEffect(() => {
     if (userData && goalWinMuscle !== null) {
       setNeeds(calculateProteinNeeds(userData.weight, goalWinMuscle));
@@ -79,19 +84,22 @@ function Main() {
     const today = new Date().toISOString().split("T")[0];
     localStorage.setItem("proteinData", JSON.stringify({ value: newTotal, date: today }));
 
-    if (goalWinMuscle && newTotal >= needs.min && newTotal < needs.max) setShowCongrats("min");
-    else if (newTotal >= needs.max) setShowCongrats("max");
+    if (goalWinMuscle) {
+      if (newTotal >= needs.min && newTotal < needs.max) setShowCongrats("min");
+      else if (newTotal >= needs.max) setShowCongrats("max");
+    }
   };
 
   return (
     <div className="main-container">
       <header className="main-header">
-        <h1>HitMyProtein</h1>
+        <h1>Meta Proteica</h1>
       </header>
 
-      <Thermometer current={protein} max={needs.max} />
-
-      <Input onSubmit={handleAddProtein} />
+      <div className="thermometer-input-wrapper">
+        <Thermometer current={protein} max={needs.max} min={needs.min} />
+        <Input onSubmit={handleAddProtein} />
+      </div>
 
       <div className="tracker-button" onClick={() => setShowTracker(true)}>
         <FaRobot size={28} color="var(--verde)" />
