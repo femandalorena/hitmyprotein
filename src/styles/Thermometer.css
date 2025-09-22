@@ -6,6 +6,13 @@
   gap: 1rem;
 }
 
+.thermometer-counter-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* espacio entre contador y fuego */
+  justify-content: center;
+}
+
 .thermometer-counter {
   font-weight: 600;
   font-size: 1rem;
@@ -21,6 +28,13 @@
 
 .thermometer-counter .naranja {
   color: var(--naranja);
+}
+
+.fire-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-5px); /* sube el fuego ligeramente */
 }
 
 .thermometer-container-wrapper {
@@ -89,4 +103,9 @@
 .thermometer-line-wrapper .thermometer-line {
   height: 1px;
   background: rgba(255, 255, 255, 0.8);
+}
+
+.thermometer-line-wrapper.minor .thermometer-line {
+  width: 8px;
+  opacity: 0.6;
 }

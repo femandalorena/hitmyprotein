@@ -29,6 +29,7 @@ function Main() {
     const today = new Date().toISOString().split("T")[0];
     return saved?.date === today ? saved.value : 0;
   });
+  const [lastAdded, setLastAdded] = useState(0);
 
   // Load saved settings once
   useEffect(() => {
@@ -79,10 +80,14 @@ function Main() {
   };
 
   const handleAddProtein = (grams) => {
-    const newTotal = protein + grams;
+    setLastAdded(grams); // para efecto fuego
+    const newTotal = Math.min(protein + grams, needs.max); // no sobrepasar el máximo
     setProtein(newTotal);
     const today = new Date().toISOString().split("T")[0];
-    localStorage.setItem("proteinData", JSON.stringify({ value: newTotal, date: today }));
+    localStorage.setItem(
+      "proteinData",
+      JSON.stringify({ value: newTotal, date: today })
+    );
 
     if (goalWinMuscle) {
       if (newTotal >= needs.min && newTotal < needs.max) setShowCongrats("min");
@@ -97,7 +102,12 @@ function Main() {
       </header>
 
       <div className="thermometer-input-wrapper">
-        <Thermometer current={protein} max={needs.max} min={needs.min} />
+        <Thermometer
+          current={protein}
+          max={needs.max}
+          min={needs.min}
+          lastAdded={lastAdded}
+        />
         <Input onSubmit={handleAddProtein} />
       </div>
 
